@@ -1,36 +1,50 @@
 #!/bin/bash
 
 GITDIR=~/src/git
+SVNDIR=~/src/svn
 VIMPSVN=~/src/svn/vimp/trunk/xpi
 VIMPGIT=~/src/git/dot-files/xpi
 
-pushd $GITDIR
+function fSvnUp() {
+  pushd $SVNDIR
+  svn up *
+  popd
+}
 
-for D in *
-do
-  cd $D
-  git pull
+function fGitPull() {
+  pushd $GITDIR
 
-  case $D in
-  "liberator")
-     make xpi
-     cp downloads/vimperator*.xpi $VIMPSVN/
-     svn add $VIMPSVN/*
-     svn ci $VIMPSVN -m "vimperator.xpi nightly build"
-     cp downloads/vimperator*.xpi $VIMPGIT/
-     pushd $VIMPGIT
-     git add $VIMPGIT/*
-     git commit -a -m "vimperator.xpi nightly build"
-     popd
-  ;;
-  "limechat")
-  ;;
-  "*")
-  ;;
-  esac
+  for D in *
+  do
+    cd $D
 
-  cd ..
-done
+    case $D in
+    "liberator")
+       git fetch origin
+       make xpi
+       cp downloads/vimperator*.xpi $VIMPSVN/
+       svn add $VIMPSVN/*
+       svn ci $VIMPSVN -m "vimperator.xpi nightly build"
+       cp downloads/vimperator*.xpi $VIMPGIT/
+       pushd $VIMPGIT
+       git add $VIMPGIT/*
+       git commit -a -m "vimperator.xpi nightly build"
+       git push
+       popd
+    ;;
+    "limechat")
+      git pull
+    ;;
+    "*")
+      git pull
+    ;;
+    esac
 
-popd
+    cd ..
+  done
+  popd
+}
+
+fSvnUp
+fGitPull
 
