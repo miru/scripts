@@ -32,6 +32,11 @@ function fGitPull() {
        git push
        popd
     ;;
+    "scripts")
+      git pull
+      git commit -a
+      git push
+    ;;
     "limechat")
       git pull
     ;;
