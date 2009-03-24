@@ -34,7 +34,7 @@ function fGitPull() {
     ;;
     "scripts")
       git pull
-      git commit -a
+      git commit -a -m "auto commit & push"
       git push
     ;;
     "limechat")
