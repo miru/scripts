@@ -21,6 +21,7 @@ function fGitPull() {
     case $D in
     "liberator")
        git fetch origin
+       git merge origin/master
        make xpi
        cp downloads/vimperator*.xpi $VIMPSVN/
        svn add $VIMPSVN/*
