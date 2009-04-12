@@ -7,7 +7,20 @@ VIMPGIT=~/src/git/dot-files/xpi
 
 function fSvnUp() {
   pushd $SVNDIR
-  svn up *
+
+  for D in *
+  do
+    echo "### svn: $D ###"
+    case $D in
+    "chronium")
+      pushd chronium
+      gclient sync
+      xcodebuild -project src/build/all.xcodeproj
+    ;;
+    "*")
+      svn up $D
+    ;;
+  esac
   popd
 }
 
@@ -16,6 +29,7 @@ function fGitPull() {
 
   for D in *
   do
+    echo "### git: $D ###"
     cd $D
 
     case $D in
