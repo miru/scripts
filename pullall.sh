@@ -20,8 +20,9 @@ function fSvnUp() {
     "*")
       svn up $D
     ;;
-  esac
-  popd
+    esac
+    done
+    popd
 }
 
 function fGitPull() {
