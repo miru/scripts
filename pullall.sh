@@ -16,6 +16,7 @@ function fSvnUp() {
       pushd chronium
       ~/src/svn/depot_tools/gclient sync
       xcodebuild -project src/build/all.xcodeproj
+      popd
     ;;
     "*")
       svn up $D
