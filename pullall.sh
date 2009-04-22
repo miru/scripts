@@ -13,13 +13,15 @@ function fSvnUp() {
     echo "### svn: $D ###"
     case $D in
     "chronium")
-      pushd chronium
+      cd chronium
       #~/src/svn/depot_tools/gclient sync
       #xcodebuild -project src/build/all.xcodeproj
-      popd
+      cd ..
     ;;
     "*")
-      svn up $D
+      cd $D
+      svn up
+      cd ..
     ;;
     esac
     done
