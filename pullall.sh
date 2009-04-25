@@ -20,7 +20,7 @@ function fSvnUp() {
     ;;
     "*")
       cd $D
-      svn up
+      svn up .
       cd ..
     ;;
     esac
