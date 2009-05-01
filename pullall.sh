@@ -20,7 +20,7 @@ function fSvnUp() {
     ;;
     "*")
       cd $D
-      svn up .
+      /opt/local/bin/svn up .
       cd ..
     ;;
     esac
