@@ -20,12 +20,12 @@ function fSvnUp() {
     ;;
     "*")
       cd $D
-      /opt/local/bin/svn up .
+      /opt/local/bin/svn up
       cd ..
     ;;
     esac
-    done
-    popd
+  done
+  popd
 }
 
 function fGitPull() {
